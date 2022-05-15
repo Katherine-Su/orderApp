@@ -63,6 +63,7 @@ public class Register extends AppCompatActivity
         }
         else if (view.getId()==R.id.register){
             performRegister();
+            startActivity(new Intent(Register.this,Login.class));
         }
     }
     private void performRegister(){
@@ -84,9 +85,6 @@ public class Register extends AppCompatActivity
                                Toast.makeText(Register.this,"register is successful",
                                        Toast.LENGTH_SHORT).show();
                                 addUser();
-                                Toast.makeText(Register.this,"addUser is successful",
-                                        Toast.LENGTH_SHORT).show();
-                                //startActivity(new Intent(Register.this,Login.class));
 
                             } else {
                                Log.w("Main","createUserWithEmail:failure",task.getException());

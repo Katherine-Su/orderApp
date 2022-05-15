@@ -1,5 +1,6 @@
 package com.example.orderapp;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,8 +44,7 @@ public class Login extends AppCompatActivity
         btn.setOnClickListener(this);
         edt_email=(EditText) findViewById(R.id.email);
         edt_pas=(EditText) findViewById(R.id.pas);
-        email=edt_email.getText().toString();
-        password=edt_pas.getText().toString();
+
         mAuth=FirebaseAuth.getInstance();
     }
 
@@ -55,25 +55,31 @@ public class Login extends AppCompatActivity
         }
         else {
             performLogin();
-            Intent it = new Intent(this, Store.class);
+            Intent it = new Intent(Login.this, Store.class);
             startActivity(it);
         }
 
     }
     private void performLogin(){
+        email=edt_email.getText().toString();
+        password=edt_pas.getText().toString();
         mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             FirebaseUser user=mAuth.getCurrentUser();
-                            Snackbar.make(findViewById(R.id.root1),"Login is successful",
-                                    Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(findViewById(R.id.root1),"Login is successful",
+//                                    Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this,"Login is successful",
+                                    Toast.LENGTH_SHORT).show();
 
                         }
                         else{
-                            Snackbar.make(findViewById(R.id.root1),"Login is fail",
-                                    Snackbar.LENGTH_SHORT).show();
+//                            Snackbar.make(findViewById(R.id.root1),"Login is fail",
+//                                    Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this,"Login is fail",
+                                    Toast.LENGTH_SHORT).show();
 
                         }
                     }
