@@ -55,8 +55,7 @@ public class Login extends AppCompatActivity
         }
         else {
             performLogin();
-            Intent it = new Intent(Login.this, Store.class);
-            startActivity(it);
+
         }
 
     }
@@ -73,6 +72,8 @@ public class Login extends AppCompatActivity
 //                                    Snackbar.LENGTH_SHORT).show();
                             Toast.makeText(Login.this,"Login is successful",
                                     Toast.LENGTH_SHORT).show();
+                            Intent it = new Intent(Login.this, Identity.class);
+                            startActivity(it);
 
                         }
                         else{

@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         btn=(Button) findViewById(R.id.start);
         btn.setOnClickListener(this);
+
     }
 
     @Override
