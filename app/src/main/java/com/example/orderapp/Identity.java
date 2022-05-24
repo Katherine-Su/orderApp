@@ -55,6 +55,7 @@ public class Identity extends AppCompatActivity
         if (id==R.id.shopkeeper){
             if (vcode.equals("hhooee")){
                 startActivity(new Intent(Identity.this,Store.class));
+                //
             }
             else{
                 Toast.makeText(Identity.this,"verification code is not correct",
