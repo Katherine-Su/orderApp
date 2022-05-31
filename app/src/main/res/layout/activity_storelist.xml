@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Storelist">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="411dp"
+        android:layout_height="30dp"
+        android:background="#86D68D" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Popular This Week"
+        android:paddingLeft="10dp"
+        android:textColor="#86D68D"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="?android:attr/actionModeWebSearchDrawable"
+        android:ems="10"
+        android:hint="Search"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#86D68D" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"/>
+</LinearLayout>

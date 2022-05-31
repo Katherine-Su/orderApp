@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">orderApp</string>
+
+    <string-array name="store_list">
+        <item>Pizza Hut</item>
+        <item>Mcdonald</item>
+        <item>KFC</item>
+        <item>Burger King</item>
+        <item>Domino Pizza</item>
+        <item>Kura Shushi</item>
+        <item>Shushiro</item>
+        <item>Taiwan Pentang</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>Best Pizza</item>
+        <item>I lovin it</item>
+        <item>Best Chicken</item>
+        <item>Dine with king</item>
+        <item>Domino Domino</item>
+        <item>this is description</item>
+        <item>this is description</item>
+        <item>this is description</item>
+    </string-array>
 </resources>

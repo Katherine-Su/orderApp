@@ -40,7 +40,7 @@ public class Identity extends AppCompatActivity
 
         }
         else{
-            //startActivity(new Intent());
+            startActivity(new Intent(Identity.this,Storelist.class));
         }
     }
 
@@ -54,7 +54,7 @@ public class Identity extends AppCompatActivity
         //vvc=vcode;
         if (id==R.id.shopkeeper){
             if (vcode.equals("hhooee")){
-                startActivity(new Intent(Identity.this,Store.class));
+                startActivity(new Intent(Identity.this,Storelist.class));
                 //
             }
             else{
