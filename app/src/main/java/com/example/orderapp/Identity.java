@@ -15,6 +15,7 @@ public class Identity extends AppCompatActivity
     Button customer, shopkeeper, driver;
     String vvc="";
     int id;
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,8 @@ public class Identity extends AppCompatActivity
         customer.setOnClickListener(this);
         shopkeeper.setOnClickListener(this);
         driver.setOnClickListener(this);
+        Intent it=getIntent();
+        email=it.getStringExtra("email");
     }
 
     @Override
@@ -54,7 +57,9 @@ public class Identity extends AppCompatActivity
         //vvc=vcode;
         if (id==R.id.shopkeeper){
             if (vcode.equals("hhooee")){
-                startActivity(new Intent(Identity.this,Storelist.class));
+                Intent intent=new Intent(Identity.this,StoreOwn.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
                 //
             }
             else{

@@ -7,14 +7,18 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/drawable/btn1_background.xml" value="0.1287037037037037" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/drawable/btn_background.xml" value="0.265625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/drawable/edt_background.xml" value="0.265625" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_food_page.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_identity.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_shop_detail.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_store.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_store_detail.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_store_own.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_storelist.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/layout_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/list_item.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/my_row.xml" value="0.264" />
       </map>
     </option>

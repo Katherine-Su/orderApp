@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.orderapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderApp">
+        <activity
+            android:name=".ShopDetail"
+            android:exported="false" />
+        <activity
+            android:name=".StoreOwn"
+            android:exported="false" />
+        <activity
+            android:name=".FoodPage"
+            android:exported="false" />
         <activity
             android:name=".StoreDetail"
             android:exported="false" />

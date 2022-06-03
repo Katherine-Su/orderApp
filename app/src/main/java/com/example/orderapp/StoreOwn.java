@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -28,58 +27,72 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class StoreDetail extends AppCompatActivity
-    implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class StoreOwn extends AppCompatActivity
+    implements AdapterView.OnItemClickListener {
     String url="https://script.google.com/macros/s/AKfycbz9WzChkAv8vS5syIV7023xW6EaoOXJehrPn0l9PGduEhHnnq_J2sMQT2KSWZBt34Bx0w/exec";
-    ArrayList<String> des=new ArrayList<>();
-    ImageView mainImageView;
-    TextView title, description;
-    String data1, data2;
-    int myImage;
-    ImageButton back;
-    ListView lv;
-    SimpleAdapter adapter;
+    String email,owns;
+    TextView ownshop;
     String itemdescription;
+    SimpleAdapter adapter;
+    ListView lv;
+    Button add;
+    ArrayList<String> des=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_detail);
-
-        mainImageView=findViewById(R.id.mainImage);
-        title=findViewById(R.id.storeTitle);
-        description=findViewById(R.id.storeDe);
-        back=findViewById(R.id.back);
-        back.setOnClickListener(this);
-        lv=findViewById(R.id.lv);
+        setContentView(R.layout.activity_store_own);
+        ownshop=findViewById(R.id.ownshop);
+        lv=findViewById(R.id.storelv);
         lv.setOnItemClickListener(this);
-        getData();
-        url+="?action=";
-        url+=data1;
-        setData();
-        Toast.makeText(StoreDetail.this,"waiting for read data",Toast.LENGTH_SHORT).show();
-        readData();
-    }
+        Intent intent=getIntent();
+        email=intent.getStringExtra("email");
+        Toast.makeText(StoreOwn.this,"wait to check your own",Toast.LENGTH_SHORT).show();
+        readOwn();
+        Toast.makeText(StoreOwn.this,"wait for read data",Toast.LENGTH_SHORT).show();
+//        url+="?action=";
+//        url+=owns;
+        //ownshop.setText(url);
 
-    private void getData() {
-        if (getIntent().hasExtra("myImage") && getIntent().hasExtra("data1") &&
-        getIntent().hasExtra("data2")){
-            data1 = getIntent().getStringExtra("data1");
-            data2 = getIntent().getStringExtra("data2");
-            myImage = getIntent().getIntExtra("myImage",1);
-        }
-        else {
-            Toast.makeText(this,"No data.", Toast.LENGTH_SHORT).show();
-        }
     }
+    private void readOwn(){
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                "https://script.google.com/macros/s/AKfycbwhz6NuhQZL5EdfqTl5EzbSSbWsjDwdRFM8e8y1xjrdy3loHGm8o_2RdEMKgw-gZx1uMQ/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        owns=response;
+                        ownshop.setText(owns);
+                        url+="?action=";
+                        url+=owns;
+                        readData();
 
-    private void setData() {
-        title.setText(data1);
-        //title.setText(url);
-        description.setText(data2);
-        mainImageView.setImageResource(myImage);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+
+                    }
+                }
+                ){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params=new HashMap<>();
+                        params.put("action","map");
+                        params.put("email",email);
+                        return params;
+                    }
+
+        };
+
+        int socketTimeout=5000;
+        RetryPolicy policy=new DefaultRetryPolicy(socketTimeout,0,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        RequestQueue queue= Volley.newRequestQueue(this);
+        queue.add(stringRequest);
     }
-
 
     private void readData(){
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
@@ -104,6 +117,7 @@ public class StoreDetail extends AppCompatActivity
         RequestQueue queue= Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }
+
     private void parseItems(String jsonResponse){
         ArrayList<HashMap<String,String>> list=new ArrayList<>();
         try{
@@ -124,7 +138,7 @@ public class StoreDetail extends AppCompatActivity
 
             }
         } catch(JSONException e){
-            Toast.makeText(StoreDetail.this,"good",Toast.LENGTH_SHORT).show();
+            Toast.makeText(StoreOwn.this,"good",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
@@ -136,14 +150,8 @@ public class StoreDetail extends AppCompatActivity
 
 
         lv.setAdapter(adapter);
-        //Toast.makeText(StoreDetail.this,"waiting for read data",Toast.LENGTH_SHORT).show();
-
-    }
 
 
-    @Override
-    public void onClick(View view) {
-        finish();
     }
 
     @Override
@@ -151,7 +159,7 @@ public class StoreDetail extends AppCompatActivity
         TextView nametv=(TextView) view.findViewById(R.id.foodname);
         TextView pricetv=(TextView) view.findViewById(R.id.foodprice);
 
-        Intent intent=new Intent(StoreDetail.this,FoodPage.class);
+        Intent intent=new Intent(StoreOwn.this,ShopDetail.class);
 
         intent.putExtra("foodname",nametv.getText().toString());
         intent.putExtra("foodprice",pricetv.getText().toString());
@@ -159,6 +167,5 @@ public class StoreDetail extends AppCompatActivity
         intent.putExtra("fooddescription",des.get(position));
         //Toast.makeText(StoreDetail.this,"intent is good",Toast.LENGTH_SHORT).show();
         startActivity(intent);
-
     }
 }
