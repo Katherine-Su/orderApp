@@ -43,5 +43,6 @@
   # ShopDetail.java
   --------------------------
   店家的操作權限(update,delete)
-  <img src="https://user-images.githubusercontent.com/71805938/171989771-2ba7e362-ee2a-4e2a-9b42-3c6927b3c2ee.png" width=430 height=550/>
+  
+ <img src="https://user-images.githubusercontent.com/71805938/171989771-2ba7e362-ee2a-4e2a-9b42-3c6927b3c2ee.png" width=430 height=550/>
 
