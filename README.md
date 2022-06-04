@@ -49,3 +49,5 @@
  # Cart.java
  使用者的購物車的內容
 
+# StoreDetail.java
+使用者看到的內容
