@@ -32,3 +32,8 @@
   蘇筱媛   | D0813114| 修正#001,#002問題
   李福龍   | D0869861| #013
   熊海恩   | D0869550| #007
+  
+#StoreOwn.java
+顯示店家管理的店 
+沒有店如下
+  ![image](https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png)
