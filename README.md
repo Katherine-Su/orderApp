@@ -38,4 +38,4 @@
   顯示店家管理的店 
   沒有店如下
   
-  <img scr="https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png" width=50 height=50/>
+  <img src="https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png" width=430 height=550/>
