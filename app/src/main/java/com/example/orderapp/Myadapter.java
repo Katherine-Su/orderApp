@@ -18,11 +18,13 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
     String data1[], data2[];
     int images[];
     Context context;
-    public Myadapter(Context context, String s1[], String s2[], int img[]){
+    String email;
+    public Myadapter(Context context, String s1[], String s2[], int img[],String email){
         this.context = context;
         this.data1 = s1;
         this.data2 = s2;
         this.images = img;
+        this.email=email;
         //String a;
     }
 
@@ -46,6 +48,7 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
                 intent.putExtra("data1", data1[position]);
                 intent.putExtra("data2", data2[position]);
                 intent.putExtra("myImage", images[position]);
+                intent.putExtra("email",email);
                 context.startActivity(intent);
 
 

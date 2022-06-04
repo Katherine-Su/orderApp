@@ -43,7 +43,10 @@ public class Identity extends AppCompatActivity
 
         }
         else{
-            startActivity(new Intent(Identity.this,Storelist.class));
+            Intent intent=new Intent(Identity.this,Customerdo.class);
+            intent.putExtra("email",email);
+            //intent.putExtra("id","customer");
+            startActivity(intent);
         }
     }
 
@@ -59,6 +62,7 @@ public class Identity extends AppCompatActivity
             if (vcode.equals("hhooee")){
                 Intent intent=new Intent(Identity.this,StoreOwn.class);
                 intent.putExtra("email",email);
+                //intent.putExtra("id","shopkeeper");
                 startActivity(intent);
                 //
             }

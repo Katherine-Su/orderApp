@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderApp">
         <activity
+            android:name=".Sentorder"
+            android:exported="false" />
+        <activity
+            android:name=".Customerdo"
+            android:exported="false" />
+        <activity
+            android:name=".CartDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Cart"
+            android:exported="false" />
+        <activity
+            android:name=".Addfood"
+            android:exported="false" />
+        <activity
             android:name=".ShopDetail"
             android:exported="false" />
         <activity

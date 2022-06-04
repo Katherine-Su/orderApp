@@ -35,9 +35,9 @@ public class StoreDetail extends AppCompatActivity
     ArrayList<String> des=new ArrayList<>();
     ImageView mainImageView;
     TextView title, description;
-    String data1, data2;
+    String data1, data2,email;
     int myImage;
-    ImageButton back;
+    ImageButton back,gotocart;
     ListView lv;
     SimpleAdapter adapter;
     String itemdescription;
@@ -51,6 +51,8 @@ public class StoreDetail extends AppCompatActivity
         description=findViewById(R.id.storeDe);
         back=findViewById(R.id.back);
         back.setOnClickListener(this);
+        gotocart=findViewById(R.id.gotocart);
+        gotocart.setOnClickListener(this);
         lv=findViewById(R.id.lv);
         lv.setOnItemClickListener(this);
         getData();
@@ -67,6 +69,8 @@ public class StoreDetail extends AppCompatActivity
             data1 = getIntent().getStringExtra("data1");
             data2 = getIntent().getStringExtra("data2");
             myImage = getIntent().getIntExtra("myImage",1);
+            email=getIntent().getStringExtra("email");
+
         }
         else {
             Toast.makeText(this,"No data.", Toast.LENGTH_SHORT).show();
@@ -143,7 +147,15 @@ public class StoreDetail extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        finish();
+        if (view.getId()==R.id.back){
+            finish();
+        }
+        else {
+           // Toast.makeText(StoreDetail.this,"ok",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(StoreDetail.this,Cart.class);
+            intent.putExtra("email",email);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -155,7 +167,8 @@ public class StoreDetail extends AppCompatActivity
 
         intent.putExtra("foodname",nametv.getText().toString());
         intent.putExtra("foodprice",pricetv.getText().toString());
-
+        intent.putExtra("shop",data1);
+        intent.putExtra("email",email);
         intent.putExtra("fooddescription",des.get(position));
         //Toast.makeText(StoreDetail.this,"intent is good",Toast.LENGTH_SHORT).show();
         startActivity(intent);

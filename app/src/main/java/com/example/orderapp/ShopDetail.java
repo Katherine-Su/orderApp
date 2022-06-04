@@ -11,12 +11,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ShopDetail extends AppCompatActivity
     implements View.OnClickListener {
 
     TextView storefoodname,storefoodprice,storefooddescription, doublecheck;
     EditText updateprice, updatedes;
-    String foodname,foodprice,description;
+    String foodname,foodprice,description,own;
     String Upp, Upd;
     Button updatebtn, deletebtn,okupdate,notokupdate,okdelete,notokdelete;
     int visibility= View.GONE;
@@ -55,6 +67,7 @@ public class ShopDetail extends AppCompatActivity
         foodname=intent.getStringExtra("foodname");
         foodprice=intent.getStringExtra("foodprice");
         description=intent.getStringExtra("fooddescrption");
+        own=intent.getStringExtra("own");
         setData();
     }
 
@@ -81,6 +94,7 @@ public class ShopDetail extends AppCompatActivity
             notokdelete.setVisibility(visibility);
         }
         else if (view.getId()==R.id.okupdate){
+            Toast.makeText(ShopDetail.this,"update is doing",Toast.LENGTH_SHORT).show();
             updateD();
         }
         else if (view.getId()==R.id.notokupdate){
@@ -91,7 +105,9 @@ public class ShopDetail extends AppCompatActivity
             notokupdate.setVisibility(visibility);
         }
         else if (view.getId()==R.id.okdelete){
+            Toast.makeText(ShopDetail.this,"delete is doing",Toast.LENGTH_SHORT).show();
             deleteD();
+
         }
         else if (view.getId()==R.id.notokdelete){
             visibility=View.GONE;
@@ -100,11 +116,93 @@ public class ShopDetail extends AppCompatActivity
             notokdelete.setVisibility(visibility);
         }
     }
-    public void updateD(){
-        Toast.makeText(ShopDetail.this,"update is doing",Toast.LENGTH_SHORT).show();
+
+    private void updateD(){
+        Upp=updateprice.getText().toString();
+        Upd=updatedes.getText().toString();
+
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                "https://script.google.com/macros/s/AKfycbz9WzChkAv8vS5syIV7023xW6EaoOXJehrPn0l9PGduEhHnnq_J2sMQT2KSWZBt34Bx0w/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(ShopDetail.this, "success",
+                                Toast.LENGTH_SHORT).show();
+                        //finish();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ShopDetail.this, "fail",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+        ) {
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params=new HashMap<>();
+                params.put("action","update");
+                params.put("actionnext",own);
+                params.put("foodname",foodname);
+                params.put("price",Upp);
+                params.put("description",Upd);
+                return params;
+            }
+
+        };
+
+        int socketTimeOut=50000;
+        RetryPolicy retryPolicy=new DefaultRetryPolicy(socketTimeOut,0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+        RequestQueue queue= Volley.newRequestQueue(this);
+        queue.add(stringRequest);
 
     }
-    public void deleteD(){
-        Toast.makeText(ShopDetail.this,"delete is doing",Toast.LENGTH_SHORT).show();
+
+    private void deleteD(){
+        Upp=updateprice.getText().toString();
+        Upd=updatedes.getText().toString();
+
+        StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                "https://script.google.com/macros/s/AKfycbz9WzChkAv8vS5syIV7023xW6EaoOXJehrPn0l9PGduEhHnnq_J2sMQT2KSWZBt34Bx0w/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(ShopDetail.this, "success",
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+
+                }
+        ) {
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params=new HashMap<>();
+                params.put("action","delete");
+                params.put("actionnext",own);
+                params.put("foodname",foodname);
+                return params;
+            }
+
+        };
+
+        int socketTimeOut=50000;
+        RetryPolicy retryPolicy=new DefaultRetryPolicy(socketTimeOut,0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+        RequestQueue queue= Volley.newRequestQueue(this);
+        queue.add(stringRequest);
+
     }
 }
