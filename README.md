@@ -39,3 +39,9 @@
   沒有店如下
   
   <img src="https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png" width=430 height=550/>
+  
+  # ShopDetail.java
+  --------------------------
+  店家的操作權限(update,delete)
+  <img src="https://user-images.githubusercontent.com/71805938/171989771-2ba7e362-ee2a-4e2a-9b42-3c6927b3c2ee.png" width=430 height=550/>
+
