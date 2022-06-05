@@ -66,7 +66,7 @@ public class ShopDetail extends AppCompatActivity
         Intent intent=getIntent();
         foodname=intent.getStringExtra("foodname");
         foodprice=intent.getStringExtra("foodprice");
-        description=intent.getStringExtra("fooddescrption");
+        description=intent.getStringExtra("fooddescription");
         own=intent.getStringExtra("own");
         setData();
     }

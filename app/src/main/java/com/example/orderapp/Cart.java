@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -41,13 +41,17 @@ public class Cart extends AppCompatActivity
     SimpleAdapter adapter;
     TextView checkcart;
     Button porder;
+    ImageView cartError, cartCry;
+    int visibility=View.GONE;
+
+
     @Override
     protected void onRestart() {
         super.onRestart();
         porder.setVisibility(View.GONE);
         list.clear();
         adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.storedd,R.id.namedd,R.id.numberdd,R.id.desdd});
+                new String[]{"store","foodname","number","description"},new int[]{R.id.sentstore,R.id.namedd,R.id.sentnumber,R.id.sentdes});
         lv.setAdapter(adapter);
         readCart();
     }
@@ -60,9 +64,14 @@ public class Cart extends AppCompatActivity
         email=intent.getStringExtra("email");
         lv=findViewById(R.id.llv);
         lv.setOnItemClickListener(this);
+
         porder=findViewById(R.id.porder);
         porder.setOnClickListener(this);
-        porder.setVisibility(View.GONE);
+        cartError=findViewById(R.id.cartError);
+        cartCry=findViewById(R.id.cartCry);
+        cartError.setVisibility(visibility);
+        cartCry.setVisibility(visibility);
+        porder.setVisibility(visibility);
         checkcart=findViewById(R.id.checkcart);
         Toast.makeText(Cart.this,"wait to read cart",Toast.LENGTH_SHORT).show();
         readCart();
@@ -122,12 +131,15 @@ public class Cart extends AppCompatActivity
 
         if (list.isEmpty()){
             checkcart.setText("You don't have any item in cart");
+            visibility=View.VISIBLE;
+            cartError.setVisibility(visibility);
+            cartCry.setVisibility(visibility);
         }
         else {
             checkcart.setText("Item in the cart");
             porder.setVisibility(View.VISIBLE);
             adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                    new String[]{"store","foodname","number","description"},new int[]{R.id.storedd,R.id.namedd,R.id.numberdd,R.id.desdd});
+                    new String[]{"store","foodname","number","description"},new int[]{R.id.sentstore,R.id.namedd,R.id.sentnumber,R.id.sentdes});
             lv.setAdapter(adapter);
         }
 
@@ -139,7 +151,7 @@ public class Cart extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         TextView tv=(TextView) view.findViewById(R.id.namedd);
-        TextView tvs=(TextView) view.findViewById(R.id.storedd);
+        TextView tvs=(TextView) view.findViewById(R.id.sentstore);
         Intent intent=new Intent(Cart.this,CartDetail.class);
         intent.putExtra("foodname",tv.getText().toString());
         intent.putExtra("store",tvs.getText().toString());

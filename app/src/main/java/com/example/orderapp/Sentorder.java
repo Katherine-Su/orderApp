@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.ls.LSInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +34,9 @@ public class Sentorder extends AppCompatActivity {
     String email;
     ListView lv;
     ArrayList<HashMap<String,String>> list=new ArrayList<>();
+    ImageView sentError, sentCry;
+    int visibility=View.GONE;
+
 
     @Override
     protected void onRestart() {
@@ -41,7 +44,7 @@ public class Sentorder extends AppCompatActivity {
 
         list.clear();
         adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.storedd,R.id.namedd,R.id.numberdd,R.id.desdd});
+                new String[]{"store","foodname","number","description"},new int[]{R.id.sentstore,R.id.namedd,R.id.sentnumber,R.id.sentdes});
         lv.setAdapter(adapter);
 
         readSentorder();
@@ -53,6 +56,12 @@ public class Sentorder extends AppCompatActivity {
         setContentView(R.layout.activity_sentorder);
         checkSentOrder=findViewById(R.id.checksentorder);
         lv=findViewById(R.id.lllv);
+
+        sentError=findViewById(R.id.sentError);
+        sentCry=findViewById(R.id.sentCry);
+        sentError.setVisibility(visibility);
+        sentCry.setVisibility(visibility);
+
         Toast.makeText(Sentorder.this,"wait to read sent order",Toast.LENGTH_SHORT).show();
         Intent intent=getIntent();
         email=intent.getStringExtra("email");
@@ -118,14 +127,17 @@ public class Sentorder extends AppCompatActivity {
         }
 
         if (list.isEmpty()){
-//            checkSentOrder.setText("You don't have any item in order");
-            checkSentOrder.setText(email);
+            checkSentOrder.setText("You don't have any item in order");
+            visibility=View.VISIBLE;
+            sentError.setVisibility(visibility);
+            sentCry.setVisibility(visibility);
+            //checkSentOrder.setText(email);
         }
         else {
             checkSentOrder.setText("Item in the order");
 
-            adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                    new String[]{"store","foodname","number","description"},new int[]{R.id.storedd,R.id.namedd,R.id.numberdd,R.id.desdd});
+            adapter=new SimpleAdapter(this,list,R.layout.sentorder_item,
+                    new String[]{"store","foodname","number","description","date"},new int[]{R.id.sentstore,R.id.namedd,R.id.sentnumber,R.id.sentdes,R.id.sentdate});
             lv.setAdapter(adapter);
         }
 
