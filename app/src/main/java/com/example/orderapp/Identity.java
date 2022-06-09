@@ -73,7 +73,9 @@ public class Identity extends AppCompatActivity
         }
        else if (id==R.id.driver){
             if (vcode.equals("cciiojk")){
-                startActivity(new Intent(Identity.this,Store.class));
+                Intent intent=new Intent(Identity.this,Driverdo.class);
+                intent.putExtra("email",email);
+                startActivity(intent);
             }
             else{
                 Toast.makeText(Identity.this,"verification code is not correct",

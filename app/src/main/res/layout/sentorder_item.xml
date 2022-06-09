@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/cartitem"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,14 +24,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Store:"
                 android:paddingLeft="10dp"
+                android:text="Store:"
                 android:textColor="#43A047"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sentstore"
+                android:id="@+id/driverstore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -50,14 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Foodname:"
                 android:paddingLeft="10dp"
+                android:text="Foodname:"
                 android:textColor="#071E9E"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sentname"
+                android:id="@+id/drivername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -79,14 +81,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Number:"
                 android:paddingLeft="10dp"
+                android:text="Number:"
                 android:textColor="#F0D8A714"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sentnumber"
+                android:id="@+id/drivernumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -108,15 +110,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Description:"
                 android:paddingLeft="10dp"
                 android:paddingBottom="2dp"
+                android:text="Description:"
                 android:textColor="#CC084B"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sentdes"
+                android:id="@+id/driverdes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -139,21 +141,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Date:"
                 android:paddingLeft="10dp"
                 android:paddingBottom="2dp"
+                android:text="Date:"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sentdate"
+                android:id="@+id/driverdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="date"
                 android:paddingLeft="10dp"
-                android:paddingBottom="2dp"
                 android:paddingRight="2dp"
+                android:paddingBottom="2dp"
+                android:text="date"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>

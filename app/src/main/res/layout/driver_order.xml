@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/cartitem">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/cartitem"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -18,12 +18,38 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Store:"
                 android:paddingLeft="10dp"
+                android:text="Who:"
+                android:textColor="#9C27B0"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/driverwho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="who"
+                android:textColor="#9C27B0"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="Store:"
                 android:textColor="#43A047"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -46,18 +72,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Foodname:"
                 android:paddingLeft="10dp"
+                android:text="Foodname:"
                 android:textColor="#071E9E"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/namedd"
+                android:id="@+id/drivername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,12 +100,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Number:"
                 android:paddingLeft="10dp"
+                android:text="Number:"
                 android:textColor="#F0D8A714"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -104,13 +128,12 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Description:"
                 android:paddingLeft="10dp"
                 android:paddingBottom="2dp"
+                android:text="Description:"
                 android:textColor="#CC084B"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -125,6 +148,34 @@
                 android:paddingBottom="2dp"
                 android:text="description"
                 android:textColor="#CC084B"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingBottom="2dp"
+                android:text="Date:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/driverdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="2dp"
+                android:text="date"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>

@@ -14,14 +14,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e0d9e90-b47c-447d-a76e-f327699cfeff" name="Default Changelist" comment="new">
+    <list default="true" id="3e0d9e90-b47c-447d-a76e-f327699cfeff" name="Default Changelist" comment="sent order date is modify">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Identity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Identity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Sentorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/Sentorder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/ShopDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/ShopDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sentorder.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sentorder.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/StoreOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/orderapp/StoreOwn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cart_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cart_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/sentorder_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/sentorder_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,13 +67,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-976948797">
+      <recent name="com.example.orderapp" />
+    </key>
     <key name="android.template.950159599">
       <recent name="com.example.orderapp" />
     </key>
@@ -94,6 +99,9 @@
       <recent name="com.example.orderapp" />
     </key>
     <key name="android.template.-2032577330">
+      <recent name="com.example.orderapp" />
+    </key>
+    <key name="android.template.-286560782">
       <recent name="com.example.orderapp" />
     </key>
     <key name="android.template.-1843980149">
@@ -259,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654345460675</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="sent order date is modify">
+      <created>1654416695304</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1654416695304</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -285,6 +300,7 @@
     <MESSAGE value="store list is finish&#10;123" />
     <MESSAGE value="add google sheet" />
     <MESSAGE value="new" />
-    <option name="LAST_COMMIT_MESSAGE" value="new" />
+    <MESSAGE value="sent order date is modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="sent order date is modify" />
   </component>
 </project>

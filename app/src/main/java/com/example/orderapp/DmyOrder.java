@@ -27,51 +27,45 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Sentorder extends AppCompatActivity {
-    String url="https://script.google.com/macros/s/AKfycbw4BCcgIKUZFy8KDozTxK7c56bKY1DQBUEpGF_HdsXA700cEmeAnOZVDvAlYS8DPD-jrg/exec";
-    SimpleAdapter adapter;
-    TextView checkSentOrder;
-    String email;
-    ListView lv;
-    ArrayList<HashMap<String,String>> list=new ArrayList<>();
-    ImageView sentError, sentCry;
-    int visibility=View.GONE;
+public class DmyOrder extends AppCompatActivity {
 
+    String url="https://script.google.com/macros/s/AKfycbzlfdwycRq7-iO1b90CNuMBhmUlgd6TYxxWL_D9BxZUOe-CLtCk4uWNKcIMCYnka1-W5Q/exec";
+    String email;
+    ArrayList<HashMap<String,String>> list=new ArrayList<>();
+    TextView dmyOrder;
+    ImageView dmyerr, dmycry;
+    int visibility=View.GONE;
+    ListView myOrderlv;
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
         list.clear();
-        adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
-        lv.setAdapter(adapter);
-
-        readSentorder();
+        adapter=new SimpleAdapter(this,list,R.layout.driver_order,
+                new String[]{"who","store","foodname","number","description"},new int[]{R.id.driverwho,R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
+        myOrderlv.setAdapter(adapter);
+        readOrder();
     }
 
+    SimpleAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sentorder);
-        checkSentOrder=findViewById(R.id.checksentorder);
-        lv=findViewById(R.id.lllv);
-
-        sentError=findViewById(R.id.sentError);
-        sentCry=findViewById(R.id.sentCry);
-        sentError.setVisibility(visibility);
-        sentCry.setVisibility(visibility);
-
-        Toast.makeText(Sentorder.this,"wait to read sent order",Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_dmy_order);
         Intent intent=getIntent();
         email=intent.getStringExtra("email");
-        url+="?action=Customer&actionnext=Order&email=";
-        url+=email;
-        readSentorder();
-
+        dmyOrder=findViewById(R.id.dmyOrder);
+        dmyerr=findViewById(R.id.dmyerr);
+        dmycry=findViewById(R.id.dmycry);
+        dmyerr.setVisibility(visibility);
+        dmycry.setVisibility(visibility);
+        myOrderlv=findViewById(R.id.myOrderlv);
+        Toast.makeText(DmyOrder.this,"wait to read your order", Toast.LENGTH_LONG).show();
+        url+="?action=driverAcOrder";
+        readOrder();
     }
 
-    private void readSentorder(){
+    private void readOrder(){
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
@@ -102,16 +96,18 @@ public class Sentorder extends AppCompatActivity {
             JSONArray jarray =jobj.getJSONArray("items");
             for (int i=0;i<jarray.length();++i){
                 JSONObject jo=jarray.getJSONObject(i);
-                //String who=jo.getString("who");
-//                if (!who.equals(email)){
-//                    continue;
-//                }
+                String person_in_charge=jo.getString("person in charge");
+                if (!person_in_charge.equals(email)){
+                    continue;
+                }
+                String who=jo.getString("who");
                 String store=jo.getString("store");
                 String foodname=jo.getString("foodname");
                 String number=jo.getString("number");
                 String description=jo.getString("description");
                 String date=jo.getString("date");
                 HashMap<String,String> item=new HashMap<>();
+                item.put("who",who);
                 item.put("store",store);
                 item.put("foodname",foodname);
                 item.put("number",number);
@@ -122,27 +118,22 @@ public class Sentorder extends AppCompatActivity {
 
             }
         } catch(JSONException e){
-            Toast.makeText(Sentorder.this,"good",Toast.LENGTH_SHORT).show();
+            Toast.makeText(DmyOrder.this,"good",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
         if (list.isEmpty()){
-            checkSentOrder.setText("You don't have any item in order");
-            visibility=View.VISIBLE;
-            sentError.setVisibility(visibility);
-            sentCry.setVisibility(visibility);
-            //checkSentOrder.setText(email);
+            dmyOrder.setText("You don't have any order");
+            visibility= View.VISIBLE;
+            dmyerr.setVisibility(visibility);
+            dmycry.setVisibility(visibility);
         }
         else {
-            checkSentOrder.setText("Item in the order");
-
-            adapter=new SimpleAdapter(this,list,R.layout.sentorder_item,
-                    new String[]{"store","foodname","number","description","date"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
-            lv.setAdapter(adapter);
+            dmyOrder.setText("Your order");
+            adapter=new SimpleAdapter(this,list,R.layout.driver_order,
+                    new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.driverstore,R.id.drivername,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
+            myOrderlv.setAdapter(adapter);
         }
-
-
-
 
     }
 }

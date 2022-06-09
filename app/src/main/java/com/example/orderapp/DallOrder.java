@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,51 +28,48 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Sentorder extends AppCompatActivity {
-    String url="https://script.google.com/macros/s/AKfycbw4BCcgIKUZFy8KDozTxK7c56bKY1DQBUEpGF_HdsXA700cEmeAnOZVDvAlYS8DPD-jrg/exec";
-    SimpleAdapter adapter;
-    TextView checkSentOrder;
-    String email;
-    ListView lv;
-    ArrayList<HashMap<String,String>> list=new ArrayList<>();
-    ImageView sentError, sentCry;
-    int visibility=View.GONE;
+public class DallOrder extends AppCompatActivity
+    implements AdapterView.OnItemClickListener {
 
+    String url="https://script.google.com/macros/s/AKfycbzjWxq6u_eymXwOH5Edik33aoybPo2HYsK3FGc6RBf9A0YZAUhQW6y7q18oEWdzbT6pUA/exec";
+    TextView dallOrder;
+    String email;
+    ListView dallOrderlv;
+    ImageView dallerr, dallcry;
+    int visibility=View.GONE;
+    SimpleAdapter adapter;
+    ArrayList<HashMap<String,String>> list=new ArrayList<>();
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
         list.clear();
-        adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
-        lv.setAdapter(adapter);
+        adapter=new SimpleAdapter(this,list,R.layout.driver_order,
+                new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.driverstore,R.id.drivername,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
+        dallOrderlv.setAdapter(adapter);
+        readOrder();
 
-        readSentorder();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sentorder);
-        checkSentOrder=findViewById(R.id.checksentorder);
-        lv=findViewById(R.id.lllv);
-
-        sentError=findViewById(R.id.sentError);
-        sentCry=findViewById(R.id.sentCry);
-        sentError.setVisibility(visibility);
-        sentCry.setVisibility(visibility);
-
-        Toast.makeText(Sentorder.this,"wait to read sent order",Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_dall_order);
         Intent intent=getIntent();
         email=intent.getStringExtra("email");
-        url+="?action=Customer&actionnext=Order&email=";
-        url+=email;
-        readSentorder();
-
+        dallOrderlv=findViewById(R.id.dallOrderlv);
+        dallOrderlv.setOnItemClickListener(this);
+        dallOrder=findViewById(R.id.dallOrder);
+        dallerr=findViewById(R.id.dallerr);
+        dallcry=findViewById(R.id.dallcry);
+        dallerr.setVisibility(visibility);
+        dallcry.setVisibility(visibility);
+        url+="?action=driverOrder";
+        Toast.makeText(DallOrder.this,"wait to read the all order", Toast.LENGTH_LONG).show();
+        readOrder();
     }
 
-    private void readSentorder(){
+    private void readOrder(){
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
@@ -102,16 +100,16 @@ public class Sentorder extends AppCompatActivity {
             JSONArray jarray =jobj.getJSONArray("items");
             for (int i=0;i<jarray.length();++i){
                 JSONObject jo=jarray.getJSONObject(i);
-                //String who=jo.getString("who");
-//                if (!who.equals(email)){
-//                    continue;
-//                }
+
+                String who=jo.getString("who");
                 String store=jo.getString("store");
                 String foodname=jo.getString("foodname");
                 String number=jo.getString("number");
                 String description=jo.getString("description");
                 String date=jo.getString("date");
+//                String person_in_charge=jo.getString("person in charge");
                 HashMap<String,String> item=new HashMap<>();
+                item.put("who",who);
                 item.put("store",store);
                 item.put("foodname",foodname);
                 item.put("number",number);
@@ -122,27 +120,40 @@ public class Sentorder extends AppCompatActivity {
 
             }
         } catch(JSONException e){
-            Toast.makeText(Sentorder.this,"good",Toast.LENGTH_SHORT).show();
+            Toast.makeText(DallOrder.this,"good",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
         if (list.isEmpty()){
-            checkSentOrder.setText("You don't have any item in order");
-            visibility=View.VISIBLE;
-            sentError.setVisibility(visibility);
-            sentCry.setVisibility(visibility);
-            //checkSentOrder.setText(email);
+            dallOrder.setText("You don't have any order");
+            visibility= View.VISIBLE;
+            dallerr.setVisibility(visibility);
+            dallcry.setVisibility(visibility);
         }
         else {
-            checkSentOrder.setText("Item in the order");
-
-            adapter=new SimpleAdapter(this,list,R.layout.sentorder_item,
-                    new String[]{"store","foodname","number","description","date"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
-            lv.setAdapter(adapter);
+            dallOrder.setText("Your order");
+            adapter=new SimpleAdapter(this,list,R.layout.driver_order,
+                    new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.driverstore,R.id.drivername,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
+            dallOrderlv.setAdapter(adapter);
         }
 
+    }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-
+        TextView whotx=view.findViewById(R.id.driverwho);
+        TextView foodnametx=view.findViewById(R.id.drivername);
+        TextView numbertx=view.findViewById(R.id.drivernumber);
+        TextView destx=view.findViewById(R.id.driverdes);
+        TextView storetx=view.findViewById(R.id.driverstore);
+        Intent intent=new Intent(DallOrder.this,WantOrder.class);
+        intent.putExtra("who",whotx.getText().toString());
+        intent.putExtra("foodname",foodnametx.getText().toString());
+        intent.putExtra("number",numbertx.getText().toString());
+        intent.putExtra("des",destx.getText().toString());
+        intent.putExtra("email",email);
+        intent.putExtra("store",storetx.getText().toString());
+        startActivity(intent);
     }
 }

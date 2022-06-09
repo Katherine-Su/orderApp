@@ -13,6 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderApp">
         <activity
+            android:name=".WantOrder"
+            android:exported="false" />
+        <activity
+            android:name=".DmyOrder"
+            android:exported="false" />
+        <activity
+            android:name=".DallOrder"
+            android:exported="false" />
+        <activity
+            android:name=".Driverdo"
+            android:exported="false" />
+        <activity
+            android:name=".ChecktoOrder"
+            android:exported="false" />
+        <activity
+            android:name=".StoreOrder"
+            android:exported="false" />
+        <activity
             android:name=".Sentorder"
             android:exported="false" />
         <activity

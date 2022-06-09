@@ -107,6 +107,7 @@ public class StoreOwn extends AppCompatActivity
                             readData();
                             visibility=View.VISIBLE;
                             add.setVisibility(visibility);
+                            myorder.setVisibility(visibility);
                         }
 
 
@@ -216,7 +217,9 @@ public class StoreOwn extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.myorder){
-
+            Intent intent=new Intent(StoreOwn.this,StoreOrder.class);
+            intent.putExtra("own",owns);
+            startActivity(intent);
         }
         else {
 
