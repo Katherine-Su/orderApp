@@ -51,7 +51,7 @@ public class Cart extends AppCompatActivity
         porder.setVisibility(View.GONE);
         list.clear();
         adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
+                new String[]{"store","foodname","number","description"},new int[]{R.id.ondoingStore,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdriver});
         lv.setAdapter(adapter);
         readCart();
     }
@@ -139,7 +139,7 @@ public class Cart extends AppCompatActivity
             checkcart.setText("Item in the cart");
             porder.setVisibility(View.VISIBLE);
             adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                    new String[]{"store","foodname","number","description"},new int[]{R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
+                    new String[]{"store","foodname","number","description"},new int[]{R.id.ondoingStore,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdriver});
             lv.setAdapter(adapter);
         }
 
@@ -150,8 +150,8 @@ public class Cart extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        TextView tv=(TextView) view.findViewById(R.id.namedd);
-        TextView tvs=(TextView) view.findViewById(R.id.driverstore);
+        TextView tv=(TextView) view.findViewById(R.id.ondoingnumber);
+        TextView tvs=(TextView) view.findViewById(R.id.ondoingStore);
         Intent intent=new Intent(Cart.this,CartDetail.class);
         intent.putExtra("foodname",tv.getText().toString());
         intent.putExtra("store",tvs.getText().toString());

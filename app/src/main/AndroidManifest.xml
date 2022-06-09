@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderApp">
         <activity
+            android:name=".OndoingAccept"
+            android:exported="false" />
+        <activity
+            android:name=".CompleteOrder"
+            android:exported="false" />
+        <activity
+            android:name=".OndoingOrder"
+            android:exported="false" />
+        <activity
             android:name=".WantOrder"
             android:exported="false" />
         <activity

@@ -48,10 +48,14 @@ public class Customerdo extends AppCompatActivity
             startActivity(intent);
         }
         else if (view.getId()==R.id.seeOndoing){
-
+            Intent intent=new Intent(Customerdo.this,OndoingOrder.class);
+            intent.putExtra("email",email);
+            startActivity(intent);
         }
         else if (view.getId()==R.id.seeCom){
-
+            Intent intent=new Intent(Customerdo.this,CompleteOrder.class);
+            intent.putExtra("email",email);
+            startActivity(intent);
         }
     }
 }

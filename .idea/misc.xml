@@ -12,6 +12,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_cart.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_cart_detail.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_checkto_order.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_complete_order.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_customerdo.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_dall_order.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_dmy_order.xml" value="0.24947916666666667" />
@@ -21,6 +22,8 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_identity.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_ondoing_accept.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_ondoing_order.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_sentorder.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/activity_shop_detail.xml" value="0.24947916666666667" />
@@ -35,6 +38,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/layout_dialog.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/list_item.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/my_row.xml" value="0.264" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/ondoing_com.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/sentorder_item.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/orderApp/app/src/main/res/layout/shopprder_item.xml" value="0.264" />
       </map>

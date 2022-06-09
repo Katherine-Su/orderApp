@@ -42,7 +42,7 @@ public class DmyOrder extends AppCompatActivity {
         super.onRestart();
         list.clear();
         adapter=new SimpleAdapter(this,list,R.layout.driver_order,
-                new String[]{"who","store","foodname","number","description"},new int[]{R.id.driverwho,R.id.driverstore,R.id.namedd,R.id.drivernumber,R.id.driverdes});
+                new String[]{"who","store","foodname","number","description"},new int[]{R.id.driverwho,R.id.ondoingStore,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdriver});
         myOrderlv.setAdapter(adapter);
         readOrder();
     }
@@ -131,7 +131,7 @@ public class DmyOrder extends AppCompatActivity {
         else {
             dmyOrder.setText("Your order");
             adapter=new SimpleAdapter(this,list,R.layout.driver_order,
-                    new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.driverstore,R.id.drivername,R.id.drivernumber,R.id.driverdes,R.id.driverdate});
+                    new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.ondoingStore,R.id.drivername,R.id.ondoingdes,R.id.ondoingdriver,R.id.driverdate});
             myOrderlv.setAdapter(adapter);
         }
 

@@ -28,48 +28,49 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DallOrder extends AppCompatActivity
+public class OndoingOrder extends AppCompatActivity
     implements AdapterView.OnItemClickListener {
 
-    String url="https://script.google.com/macros/s/AKfycbzjWxq6u_eymXwOH5Edik33aoybPo2HYsK3FGc6RBf9A0YZAUhQW6y7q18oEWdzbT6pUA/exec";
-    TextView dallOrder;
+    ImageView ondoingerr, ondoingcry;
+    TextView ondoingtx;
+    ListView ondoinglv;
+    int visibility= View.GONE;
+    String url="https://script.google.com/macros/s/AKfycbzh5HrWSayGqqhBcTIv8b-CZN11ZGhYAvOoAeu50_hz-S9uu7qrF9-WkTSGbPttZn5g2Q/exec?action=ondoing&email=";
     String email;
-    ListView dallOrderlv;
-    ImageView dallerr, dallcry;
-    int visibility=View.GONE;
-    SimpleAdapter adapter;
     ArrayList<HashMap<String,String>> list=new ArrayList<>();
+    SimpleAdapter adapter;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ondoing_order);
 
+        ondoingtx=findViewById(R.id.ondoingtx);
+        ondoinglv=findViewById(R.id.ondoinglv);
+        ondoinglv.setOnItemClickListener(this);
+        ondoingerr=findViewById(R.id.ondoingerr);
+        ondoingcry=findViewById(R.id.ondoingcry);
+        ondoingerr.setVisibility(visibility);
+        ondoingcry.setVisibility(visibility);
+        Intent intent=getIntent();
+        email=intent.getStringExtra("email");
+        url+=email;
+        Toast.makeText(OndoingOrder.this, "wait to read ondoing order", Toast.LENGTH_SHORT).show();
+        readOndoing();
+    }
     @Override
     protected void onRestart() {
         super.onRestart();
         list.clear();
-        adapter=new SimpleAdapter(this,list,R.layout.driver_order,
-                new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.ondoingStore,R.id.drivername,R.id.ondoingdes,R.id.ondoingdriver,R.id.driverdate});
-        dallOrderlv.setAdapter(adapter);
-        readOrder();
+        adapter=new SimpleAdapter(this,list,R.layout.ondoing_com,
+                new String[]{"store","foodname","number","description","date","person_in_charge"},
+                new int[]{R.id.ondoingStore,R.id.ondoingName,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdate,R.id.ondoingdriver});
+        ondoinglv.setAdapter(adapter);
+        readOndoing();
+
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dall_order);
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
-        dallOrderlv=findViewById(R.id.dallOrderlv);
-        dallOrderlv.setOnItemClickListener(this);
-        dallOrder=findViewById(R.id.dallOrder);
-        dallerr=findViewById(R.id.dallerr);
-        dallcry=findViewById(R.id.dallcry);
-        dallerr.setVisibility(visibility);
-        dallcry.setVisibility(visibility);
-        url+="?action=driverOrder";
-        Toast.makeText(DallOrder.this,"wait to read the all order", Toast.LENGTH_LONG).show();
-        readOrder();
-    }
-
-    private void readOrder(){
+    private void readOndoing(){
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
@@ -93,6 +94,8 @@ public class DallOrder extends AppCompatActivity
         queue.add(stringRequest);
     }
 
+
+
     private void parseItems(String jsonResponse){
         //ArrayList<HashMap<String,String>> list=new ArrayList<>();
         try{
@@ -101,59 +104,59 @@ public class DallOrder extends AppCompatActivity
             for (int i=0;i<jarray.length();++i){
                 JSONObject jo=jarray.getJSONObject(i);
 
-                String who=jo.getString("who");
                 String store=jo.getString("store");
                 String foodname=jo.getString("foodname");
                 String number=jo.getString("number");
                 String description=jo.getString("description");
                 String date=jo.getString("date");
-//                String person_in_charge=jo.getString("person in charge");
+                String person_in_charge=jo.getString("person in charge");
                 HashMap<String,String> item=new HashMap<>();
-                item.put("who",who);
                 item.put("store",store);
                 item.put("foodname",foodname);
                 item.put("number",number);
                 item.put("description",description);
                 item.put("date",date);
+                item.put("person_in_charge",person_in_charge);
                 list.add(item);
 
 
             }
         } catch(JSONException e){
-            Toast.makeText(DallOrder.this,"good",Toast.LENGTH_SHORT).show();
+            Toast.makeText(OndoingOrder.this,"good",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
         if (list.isEmpty()){
-            dallOrder.setText("You don't have any order");
+            ondoingtx.setText("You don't have any order");
             visibility= View.VISIBLE;
-            dallerr.setVisibility(visibility);
-            dallcry.setVisibility(visibility);
+            ondoingerr.setVisibility(visibility);
+            ondoingcry.setVisibility(visibility);
         }
         else {
-            dallOrder.setText("Your order");
-            adapter=new SimpleAdapter(this,list,R.layout.driver_order,
-                    new String[]{"who","store","foodname","number","description","date"},new int[]{R.id.driverwho,R.id.ondoingStore,R.id.drivername,R.id.ondoingdes,R.id.ondoingdriver,R.id.driverdate});
-            dallOrderlv.setAdapter(adapter);
+//            ondoingtx.setText("Your order");
+            ondoingtx.setVisibility(View.GONE);
+            adapter=new SimpleAdapter(this,list,R.layout.ondoing_com,
+                    new String[]{"store","foodname","number","description","date","person_in_charge"},
+                    new int[]{R.id.ondoingStore,R.id.ondoingName,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdate,R.id.ondoingdriver});
+            ondoinglv.setAdapter(adapter);
         }
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-        TextView whotx=view.findViewById(R.id.driverwho);
-        TextView foodnametx=view.findViewById(R.id.drivername);
-        TextView numbertx=view.findViewById(R.id.ondoingdes);
-        TextView destx=view.findViewById(R.id.ondoingdriver);
         TextView storetx=view.findViewById(R.id.ondoingStore);
-        Intent intent=new Intent(DallOrder.this,WantOrder.class);
-        intent.putExtra("who",whotx.getText().toString());
-        intent.putExtra("foodname",foodnametx.getText().toString());
+        TextView nametx=view.findViewById(R.id.ondoingName);
+        TextView numbertx=view.findViewById(R.id.ondoingnumber);
+        TextView destx=view.findViewById(R.id.ondoingdes);
+        TextView drivertx=view.findViewById(R.id.ondoingdriver);
+        Intent intent=new Intent(OndoingOrder.this,OndoingAccept.class);
+        intent.putExtra("store",storetx.getText().toString());
+        intent.putExtra("foodname",nametx.getText().toString());
         intent.putExtra("number",numbertx.getText().toString());
         intent.putExtra("des",destx.getText().toString());
+        intent.putExtra("driver",drivertx.getText().toString());
         intent.putExtra("email",email);
-        intent.putExtra("store",storetx.getText().toString());
         startActivity(intent);
     }
 }

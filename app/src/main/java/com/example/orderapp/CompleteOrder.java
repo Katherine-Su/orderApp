@@ -27,51 +27,45 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Sentorder extends AppCompatActivity {
-    String url="https://script.google.com/macros/s/AKfycbw4BCcgIKUZFy8KDozTxK7c56bKY1DQBUEpGF_HdsXA700cEmeAnOZVDvAlYS8DPD-jrg/exec";
+public class CompleteOrder extends AppCompatActivity {
+
     SimpleAdapter adapter;
-    TextView checkSentOrder;
-    String email;
-    ListView lv;
-    ArrayList<HashMap<String,String>> list=new ArrayList<>();
-    ImageView sentError, sentCry;
+    ListView completelv;
+    ImageView completeerr, completecry;
+    TextView completeOrder;
     int visibility=View.GONE;
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-        list.clear();
-        adapter=new SimpleAdapter(this,list,R.layout.cart_item,
-                new String[]{"store","foodname","number","description"},new int[]{R.id.ondoingStore,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdriver});
-        lv.setAdapter(adapter);
-
-        readSentorder();
-    }
+    String email;
+    ArrayList<HashMap<String,String>> list=new ArrayList<>();
+    String url="https://script.google.com/macros/s/AKfycbx6AMEZr_PN7sltidzzJmgkfVJNkIG57UxW6vHSPDxGbiKBF9tyIsKFla4vFgpXd17SsA/exec?action=completeOrder&email=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sentorder);
-        checkSentOrder=findViewById(R.id.checksentorder);
-        lv=findViewById(R.id.lllv);
-
-        sentError=findViewById(R.id.sentError);
-        sentCry=findViewById(R.id.sentCry);
-        sentError.setVisibility(visibility);
-        sentCry.setVisibility(visibility);
-
-        Toast.makeText(Sentorder.this,"wait to read sent order",Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_complete_order);
+        completelv=findViewById(R.id.completelv);
+        completeOrder=findViewById(R.id.completeOrder);
+        completeerr=findViewById(R.id.completeerr);
+        completecry=findViewById(R.id.completecry);
+        completeerr.setVisibility(visibility);
+        completecry.setVisibility(visibility);
         Intent intent=getIntent();
         email=intent.getStringExtra("email");
-        url+="?action=Customer&actionnext=Order&email=";
         url+=email;
-        readSentorder();
+        Toast.makeText(CompleteOrder.this, "wait to read complete order", Toast.LENGTH_SHORT).show();
+        readCompletOrder();
 
     }
-
-    private void readSentorder(){
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        list.clear();
+        adapter=new SimpleAdapter(this,list,R.layout.ondoing_com,
+                new String[]{"store","foodname","number","description","date","person_in_charge"},
+                new int[]{R.id.ondoingStore,R.id.ondoingName,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdate,R.id.ondoingdriver});
+        completelv.setAdapter(adapter);
+        readCompletOrder();
+    }
+    private void readCompletOrder(){
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
@@ -95,6 +89,8 @@ public class Sentorder extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+
+
     private void parseItems(String jsonResponse){
         //ArrayList<HashMap<String,String>> list=new ArrayList<>();
         try{
@@ -102,43 +98,41 @@ public class Sentorder extends AppCompatActivity {
             JSONArray jarray =jobj.getJSONArray("items");
             for (int i=0;i<jarray.length();++i){
                 JSONObject jo=jarray.getJSONObject(i);
-                //String who=jo.getString("who");
-//                if (!who.equals(email)){
-//                    continue;
-//                }
+//                String who=jo.getString("who");
+
                 String store=jo.getString("store");
                 String foodname=jo.getString("foodname");
                 String number=jo.getString("number");
                 String description=jo.getString("description");
                 String date=jo.getString("date");
+                String person=jo.getString("person");
                 HashMap<String,String> item=new HashMap<>();
                 item.put("store",store);
                 item.put("foodname",foodname);
                 item.put("number",number);
                 item.put("description",description);
                 item.put("date",date);
+                item.put("person",person);
                 list.add(item);
 
 
             }
         } catch(JSONException e){
-            Toast.makeText(Sentorder.this,"good",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CompleteOrder.this,"good",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
         if (list.isEmpty()){
-            checkSentOrder.setText("You don't have any item in order");
-            visibility=View.VISIBLE;
-            sentError.setVisibility(visibility);
-            sentCry.setVisibility(visibility);
-            //checkSentOrder.setText(email);
+            completeOrder.setText("You don't have any complete order");
+            visibility= View.VISIBLE;
+            completeerr.setVisibility(visibility);
+            completecry.setVisibility(visibility);
         }
         else {
-            checkSentOrder.setText("Item in the order");
-
-            adapter=new SimpleAdapter(this,list,R.layout.sentorder_item,
-                    new String[]{"store","foodname","number","description","date"},new int[]{R.id.ondoingStore,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdriver,R.id.driverdate});
-            lv.setAdapter(adapter);
+            adapter=new SimpleAdapter(this,list,R.layout.ondoing_com,
+                    new String[]{"store","foodname","number","description","date","person"},
+                    new int[]{R.id.ondoingStore,R.id.ondoingName,R.id.ondoingnumber,R.id.ondoingdes,R.id.ondoingdate,R.id.ondoingdriver});
+            completelv.setAdapter(adapter);
         }
 
 
