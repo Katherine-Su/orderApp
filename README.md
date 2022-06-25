@@ -51,6 +51,12 @@
   
   <img src="https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png" width=430 height=550/>
   
+  # 額外工具
+  使用Google sheet
+   # order表單
+   https://docs.google.com/spreadsheets/d/1RcDde1Vf0ViOd22juc6Jput-gPx2EIs5lzjLXMTLGBY/edit?usp=sharing
+   # test表單
+   https://docs.google.com/spreadsheets/d/1UPHQFaz17akaD9Ze4kRJQczrq89m63j0m1FuNPlaj54/edit?usp=sharing
   # ShopDetail.java
   --------------------------
   店家的操作權限(update,delete)
