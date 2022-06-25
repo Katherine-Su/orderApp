@@ -43,13 +43,6 @@
   
   # App功能
 ![image](https://user-images.githubusercontent.com/71805938/175765504-76fc9a40-73c4-43ee-a1eb-8dcaac59829c.png)
-
-  # StoreOwn.java
-  ---------------------------
-  顯示店家管理的店 
-  沒有店如下
-  
-  <img src="https://user-images.githubusercontent.com/71805938/171986687-dd1892d0-e8f7-4e27-aede-40b1ead0ebfc.png" width=430 height=550/>
   
   # 額外工具
   使用Google sheet
@@ -57,14 +50,4 @@
    https://docs.google.com/spreadsheets/d/1RcDde1Vf0ViOd22juc6Jput-gPx2EIs5lzjLXMTLGBY/edit?usp=sharing
    # test表單
    https://docs.google.com/spreadsheets/d/1UPHQFaz17akaD9Ze4kRJQczrq89m63j0m1FuNPlaj54/edit?usp=sharing
-  # ShopDetail.java
-  --------------------------
-  店家的操作權限(update,delete)
   
- <img src="https://user-images.githubusercontent.com/71805938/171989771-2ba7e362-ee2a-4e2a-9b42-3c6927b3c2ee.png" width=430 height=550/>
- 
- # Cart.java
- 使用者的購物車的內容
-
-# StoreDetail.java
-使用者看到的內容
